@@ -1,1 +1,8 @@
 // Write (or import) your styles here
+.app-header.navbar .navbar-brand img {
+    max-width: 300px !important;
+    max-height: 40px !important;
+}
+.primary-text {
+    color: $primary !important;
+}

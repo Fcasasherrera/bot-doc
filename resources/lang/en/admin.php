@@ -30,5 +30,25 @@ return [
         ],
     ],
 
+    'patient' => [
+        'title' => 'Patients',
+
+        'actions' => [
+            'index' => 'Patients',
+            'create' => 'New Patient',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'name' => 'Name',
+            'nss' => 'Nss',
+            'birthdate' => 'Birthdate',
+            'sex' => 'Sex',
+            'enabled' => 'Enabled',
+            
+        ],
+    ],
+
     // Do not delete me :) I'm used for auto-generation
 ];

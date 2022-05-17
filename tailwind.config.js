@@ -1,6 +1,6 @@
 module.exports = {
+    content: ["./resources/**/*.{html,js}"],
     purge: false,
-    darkMode: false, // or 'media' or 'class'
     theme: {
         screens: {
             sxs: "320px",

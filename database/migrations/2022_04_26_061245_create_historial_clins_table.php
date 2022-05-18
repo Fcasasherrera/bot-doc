@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('historial_clins', function (Blueprint $table) {
-            $table->engine="InnoDB";
+            $table->engine = "InnoDB";
             $table->id();
             $table->bigInteger('idUsuario')->unsigned();
             $table->bigInteger('idPaciente')->unsigned();
             $table->date('fechaCreacion');
             $table->timestamps();
 
-            $table->foreign('idUsuario')->references('id')->on('usuarios')->onDelete("cascade")->onUpdate('cascade');
+            $table->foreign('idUsuario')->references('id')->on('users')->onDelete("cascade")->onUpdate('cascade');
             $table->foreign('idPaciente')->references('id')->on('pacientes')->onDelete("cascade")->onUpdate('cascade');
         });
     }

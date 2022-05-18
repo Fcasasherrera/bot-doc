@@ -107,17 +107,17 @@ class WebsiteController extends Controller
         $result3 = [];
         $enfermedades1 = SinEnf::where('idSintoma', $request->sintoma1)->get();
         foreach ($enfermedades1 as $key => $enfermedad1) {
-            $result1[$key] = $enfermedad1->enfermdad->nombre;
+            $result1[$key] = $enfermedad1->enfermedad->nombre;
         };
 
         $enfermedades2 = SinEnf::where('idSintoma', $request->sintoma2)->get();
         foreach ($enfermedades2 as $key => $enfermedad2) {
-            $result2[$key] = $enfermedad2->enfermdad->nombre;
+            $result2[$key] = $enfermedad2->enfermedad->nombre;
         }
 
         $enfermedades3 = SinEnf::where('idSintoma', $request->sintoma3)->get();
         foreach ($enfermedades3 as $key => $enfermedad3) {
-            $result3[$key] = $enfermedad3->enfermdad->nombre;
+            $result3[$key] = $enfermedad3->enfermedad->nombre;
         }
         $result = array_merge($result1, $result2, $result3);
         //final

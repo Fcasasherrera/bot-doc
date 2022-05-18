@@ -77,6 +77,7 @@
 
     <!-- This example requires Tailwind CSS v2.0+ -->
     @include('client.components.modal-consult')
+    @include('client.components.modal-result')
 @endsection
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -137,10 +138,22 @@
                 email,
                 token,
             }
+
             console.log(data);
             axios.post('/api/citas', data)
                 .then(function(response) {
-                    if (response.data.status) {
+                    console.log(response)
+                    if (response.status) {
+                        consultModal();
+                        let listResult = document.getElementById("listResult");
+                        let keys = Object.keys(response.data.data);
+                        keys.map(item => {
+                            var li = document.createElement("li");
+                            listResult.appendChild(li);
+                            let percent = response.data.data[item] * 10
+                            li.innerHTML = item + ": " + percent + "%";
+                        })
+                        resultModal();
 
                     }
                 })
@@ -152,6 +165,17 @@
 
         function consultModal() {
             let modalRegister = document.getElementById("modalConsult");
+            if (modalRegister.classList.contains("hidden")) {
+                modalRegister.classList.remove("hidden");
+                modalRegister.classList.add("flex");
+            } else {
+                modalRegister.classList.remove("flex");
+                modalRegister.classList.add("hidden");
+            }
+        }
+
+        function resultModal() {
+            let modalRegister = document.getElementById("modalResult");
             if (modalRegister.classList.contains("hidden")) {
                 modalRegister.classList.remove("hidden");
                 modalRegister.classList.add("flex");

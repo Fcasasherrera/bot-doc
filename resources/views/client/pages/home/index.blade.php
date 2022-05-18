@@ -8,7 +8,7 @@
         class="flex justify-between items-center max-w-7xl mx-auto px-4 py-6 sm:px-6 md:justify-start md:space-x-10 lg:px-8">
         <div class="relative bg-white">
             <div class="h-56 bg-indigo-600 sm:h-72 lg:absolute lg:left-0 lg:h-full lg:w-1/2 rounded-xl">
-                <img class="w-full h-full object-cover rounded-xl" src="/images/home-1.jpg" alt="Support team">
+                <img class="w-full h-full object-cover rounded-xl" src="/images/hero-2.jpeg" alt="Support team">
             </div>
             <div class="relative max-w-7xl mx-auto px-4 py-8 sm:py-12 sm:px-6 lg:py-16">
                 <div class="max-w-2xl mx-auto lg:max-w-none lg:mr-0 lg:ml-auto lg:w-1/2 lg:pl-10">
@@ -22,22 +22,22 @@
                             </svg>
                         </div>
                         <span class="shadow rounded p-3 ml-2 text-md text-primary font-bold uppercase">
-                            About us
+                            Acerca de nosotros
                         </span>
                     </div>
                     <h2 class="mt-6 text-3xl font-extrabold text-gray-900 sm:text-4xl">
-                        We Love to Take Care of Your Pets
+                        Nos encanta trabajar con nuestros clientes
                     </h2>
                     <p class="mt-6 text-lg text-gray-500">
-                        Pawscare is the largest specialty pet retailer of services and solutions for the
-                        lifetime needs of pets. At Pawscare, we love pets, and we believe pets make us
-                        better people.
+                        Bot-doc es el minorista especializado en servicios medicos más grande de México y
+                        soluciones para las necesidades de por vida de nuestros pacientes. En Bot-doc,
+                        amamos lo que hacemos y creemos en nuestros resultados.
                     </p>
                     <div class="mt-8 overflow-hidden">
                         <dl class="-mx-8 -mt-8 flex flex-wrap">
                             <div class="flex flex-col px-8 pt-8">
                                 <dt class="order-2 text-base font-medium text-gray-500">
-                                    Pets Care
+                                    Servicio
                                 </dt>
                                 <dd class="order-1 text-2xl font-extrabold text-primary sm:text-3xl">
                                     24/7
@@ -45,7 +45,7 @@
                             </div>
                             <div class="flex flex-col px-8 pt-8">
                                 <dt class="order-2 text-base font-medium text-gray-500">
-                                    Skilled Personal
+                                    Personal Calificado
                                 </dt>
                                 <dd class="order-1 text-2xl font-extrabold text-primary sm:text-3xl">
                                     100%
@@ -53,7 +53,7 @@
                             </div>
                             <div class="flex flex-col px-8 pt-8">
                                 <dt class="order-2 text-base font-medium text-gray-500">
-                                    Best Veterinars
+                                    Mejores Doctores
                                 </dt>
                                 <dd class="order-1 text-2xl font-extrabold text-primary sm:text-3xl">
                                     100k+
@@ -65,4 +65,40 @@
             </div>
         </div>
     </div>
+    <div class="flex justify-between items-center w-full md:justify-start md:space-x-10">
+        <div class="relative w-full mx-auto px-4 py-8 sm:py-12 sm:px-6 lg:py-16 bg-gradient justify-center text-center">
+            <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+                Registrate Ahora.!
+            </h2>
+            <a href="#" class="btn-primary mt-8">
+                Registrarse
+            </a>
+        </div>
+    </div>
+
+    <footer class="p-4 bg-white rounded-lg shadow md:px-6 md:py-8 dark:bg-gray-800">
+        <div class="sm:flex sm:items-center sm:justify-between">
+            <a href="https://bot-doc.sw" class="flex items-center mb-4 sm:mb-0">
+                <img src="/images/logo.png" class="mr-3 h-8" alt="Flowbite Logo">
+            </a>
+            <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
+                <li>
+                    <a href="#" class="mr-4 hover:underline md:mr-6 ">About</a>
+                </li>
+                <li>
+                    <a href="#" class="mr-4 hover:underline md:mr-6">Privacy Policy</a>
+                </li>
+                <li>
+                    <a href="#" class="mr-4 hover:underline md:mr-6 ">Licensing</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:underline">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8">
+        <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a href="https://flowbite.com"
+                class="hover:underline">Bot-doc™</a>. All Rights Reserved.
+        </span>
+    </footer>
 @endsection

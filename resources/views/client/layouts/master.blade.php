@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Styles -->
-    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/fav.ico" type="image/x-icon">
     <link href="{{ asset('css/client/app.css') }}" rel="stylesheet">
 </head>
 

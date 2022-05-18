@@ -17,6 +17,7 @@ Route::get('/', 'App\Http\Controllers\WebsiteController@index');
 Route::get('/dashboard', 'App\Http\Controllers\WebsiteController@dashboard');
 Route::get('/dashboard/medical-consult', 'App\Http\Controllers\WebsiteController@consult');
 
+Route::post('/consultDisease', 'App\Http\Controllers\WebsiteController@consultDisease');
 
 /* Auto-generated admin routes */
 Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {

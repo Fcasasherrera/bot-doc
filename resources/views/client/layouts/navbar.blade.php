@@ -153,10 +153,11 @@
                 </a>
             </nav>
             <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-                <a href="#" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+                <a onclick="loginModal()"
+                    class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
                     Entrar
                 </a>
-                <a href="#" class="btn-primary ml-8">
+                <a onclick="registerModal()" class="btn-primary ml-8">
                     Registrarse
                 </a>
             </div>

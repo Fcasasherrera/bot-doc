@@ -10,6 +10,7 @@
     <!-- Styles -->
     <link rel="icon" href="/images/fav.ico" type="image/x-icon">
     <link href="{{ asset('css/client/app.css') }}" rel="stylesheet">
+    <title>Bot-Doc | @yield('title')</title>
 </head>
 
 <body>
@@ -18,10 +19,34 @@
             @include('client.layouts.navbar')
             <main>
                 @yield('content')
+                @include('client.layouts.footer')
             </main>
         </div>
     </div>
     <script async src="{{ asset('js/app.js') }}"></script>
+    <script>
+        function registerModal() {
+            let modalRegister = document.getElementById("modalRegister");
+            if (modalRegister.classList.contains("hidden")) {
+                modalRegister.classList.remove("hidden");
+                modalRegister.classList.add("flex");
+            } else {
+                modalRegister.classList.remove("flex");
+                modalRegister.classList.add("hidden");
+            }
+        }
+
+        function loginModal() {
+            let modalRegister = document.getElementById("modalLogin");
+            if (modalRegister.classList.contains("hidden")) {
+                modalRegister.classList.remove("hidden");
+                modalRegister.classList.add("flex");
+            } else {
+                modalRegister.classList.remove("flex");
+                modalRegister.classList.add("hidden");
+            }
+        }
+    </script>
 </body>
 
 </html>

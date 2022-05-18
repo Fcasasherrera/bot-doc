@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'App\Http\Controllers\WebsiteController@index');
+Route::get('/dashboard', 'App\Http\Controllers\WebsiteController@dashboard');
+Route::get('/dashboard/medical-consult', 'App\Http\Controllers\WebsiteController@consult');
 
 
 /* Auto-generated admin routes */

@@ -9,22 +9,28 @@ class SinEnf extends Model
     protected $fillable = [
         'idSintoma',
         'idEnfermedad',
-    
+
     ];
-    
-    
+
+
     protected $dates = [
         'created_at',
         'updated_at',
-    
+
     ];
-    
+
     protected $appends = ['resource_url'];
 
     /* ************************ ACCESSOR ************************* */
 
     public function getResourceUrlAttribute()
     {
-        return url('/admin/sin-enfs/'.$this->getKey());
+        return url('/admin/sin-enfs/' . $this->getKey());
+    }
+
+    public function enfermedad()
+    {
+
+        return $this->hasOne(Enfermedad::class, 'id', 'idEnfermedad');
     }
 }

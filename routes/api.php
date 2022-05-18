@@ -26,3 +26,4 @@ Route::middleware('api')->get('/citas', [WebsiteController::class, 'citas']);
 Route::middleware('api')->post('/register', [WebsiteController::class, 'register']);
 Route::middleware('api')->post('/login', [WebsiteController::class, 'login']);
 Route::middleware('api')->post('/citas', [WebsiteController::class, 'createCite']);
+// Route::post('/consultDisease', 'App\Http\Controllers\WebsiteController@consultDisease');

@@ -20,43 +20,44 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <div class="p-6 space-y-6">
+            <form id="register" method="post" action="/api/register">
+                <div class="p-6 space-y-6">
+                    <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="name"
+                        placeholder="Nombre" />
 
-                <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="fullname"
-                    placeholder="Nombre" />
+                    <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="email"
+                        placeholder="Correo" />
 
-                <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="email"
-                    placeholder="Correo" />
-
-                <input type="password" class="block border border-grey-light w-full p-3 rounded mb-4" name="password"
-                    placeholder="Contraseña" />
-                <input type="password" class="block border border-grey-light w-full p-3 rounded mb-4"
-                    name="confirm_password" placeholder="Confirmar Contraseña" />
-                <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="nss"
-                    placeholder="Numero Seguro Social" />
-                <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="bornDate"
-                    placeholder="Fecha nacimiento" />
-                <div class="mt-4">
-                    <span class="text-gray-700">Sexo</span>
-                    <div class="mt-2">
-                        <label class="inline-flex items-center">
-                            <input type="radio" class="form-radio" name="accountType" value="man">
-                            <span class="ml-2">Hombre</span>
-                        </label>
-                        <label class="inline-flex items-center ml-6">
-                            <input type="radio" class="form-radio" name="accountType" value="woman">
-                            <span class="ml-2">Mujer</span>
-                        </label>
+                    <input type="password" class="block border border-grey-light w-full p-3 rounded mb-4"
+                        name="password" placeholder="Contraseña" />
+                    <input type="password" class="block border border-grey-light w-full p-3 rounded mb-4"
+                        name="confirm_password" placeholder="Confirmar Contraseña" />
+                    <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="nss"
+                        placeholder="Numero Seguro Social" />
+                    <input type="date" id="bornDate" class="block border border-grey-light w-full p-3 rounded mb-4"
+                        name="bornDate" placeholder="Fecha nacimiento" />
+                    <div class="mt-4">
+                        <span class="text-gray-700">Sexo</span>
+                        <div class="mt-2">
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="sex" value="man">
+                                <span class="ml-2">Hombre</span>
+                            </label>
+                            <label class="inline-flex items-center ml-6">
+                                <input type="radio" class="form-radio" name="sex" value="woman">
+                                <span class="ml-2">Mujer</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- Modal footer -->
-            <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
-                <button onclick="registerModal()"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Continuar</button>
-                <button onclick="registerModal()"
-                    class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancelar</button>
-            </div>
+                <!-- Modal footer -->
+                <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
+                    <button type="button" onclick="register()"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Continuar</button>
+                    <button type="button" onclick="registerModal()"
+                        class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Cancelar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

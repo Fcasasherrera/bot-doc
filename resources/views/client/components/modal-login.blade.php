@@ -20,19 +20,21 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <div class="p-6 space-y-6">
-                <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="email"
-                    placeholder="Correo" />
+            <form id="login" method="post" action="/api/login">
+                <div class="p-6 space-y-6">
+                    <input type="text" class="block border border-grey-light w-full p-3 rounded mb-4" name="email"
+                        placeholder="Correo" />
 
-                <input type="password" class="block border border-grey-light w-full p-3 rounded mb-4" name="password"
-                    placeholder="Contraseña" />
-            </div>
-            <!-- Modal footer -->
-            <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
-                <a href="/dashboard"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Iniciar
-                    sesión</a>
-            </div>
+                    <input type="password" class="block border border-grey-light w-full p-3 rounded mb-4" name="password"
+                        placeholder="Contraseña" />
+                </div>
+                <!-- Modal footer -->
+                <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
+                    <button type="button" onclick="login()"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Iniciar
+                        sesión</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

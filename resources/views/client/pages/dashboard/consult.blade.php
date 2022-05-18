@@ -9,7 +9,7 @@
             <div class="p-2">
                 <div class="flex justify-between items-center">
                     <span class="pl-3 text-md text-primary font-bold uppercase items-center">Consultas</span>
-                    <a onclick="consultModal()" class="btn-primary mr-8">
+                    <a onclick="consultModal()" class="btn-primary mr-8 cursor-pointer">
                         Agregar
                     </a>
                 </div>
@@ -35,9 +35,6 @@
                                 <th scope="col" class="px-6 py-3">
                                     Status
                                 </th>
-                                {{-- <th scope="col" class="px-6 py-3">
-                                    Acciones
-                                </th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -122,8 +119,68 @@
         $(document).ready(function() {
             $('.js-example-basic-single').select2({
                 width: '100%',
+                maximumSelectionSize: 3
             });
+            getData()
         });
+
+        async function getData() {
+            let register = document.getElementById("register")
+            let sintomas, signos;
+            try {
+                sintomas = await axios.get('/api/sintomas')
+                signos = await axios.get('/api/signos')
+            } catch (error) {
+                console.error(error);
+            }
+            let data = {
+                sintomas: sintomas.data.data,
+                signos: signos.data.data
+            }
+            var x = document.getElementById("sintomas");
+            var y = document.getElementById("signos");
+            data.sintomas.map(sintoma => {
+                var option = document.createElement("option");
+                option.value = sintoma.id;
+                option.text = sintoma.nombre;
+                x.add(option);
+            })
+            data.signos.map(signo => {
+                var option = document.createElement("option");
+                option.value = signo.id;
+                option.text = signo.nombre;
+                y.add(option);
+            })
+            //console.log(data);
+        }
+
+        function createCite() {
+            let cites = document.getElementById("cites")
+            let sintomas = $('#sintomas').val();
+            let signos = $('#signos').val();
+            let email = window.localStorage.getItem('email');
+            let token = window.localStorage.getItem('token');
+            let data = {
+                sintoma1: sintomas[0],
+                sintoma2: sintomas[1],
+                sintoma3: sintomas[2],
+                signo1: signos[0],
+                signo2: signos[1],
+                signo3: signos[2],
+                detalles: cites.detalles.value,
+                email,
+                token,
+            }
+            console.log(data);
+            /*axios.post('/api/citas', data)
+                .then(function(response) {
+                    console.log(response)
+
+                })
+                .catch(function(error) {
+                    console.log(error);
+                })*/
+        }
 
 
         function consultModal() {

@@ -1,20 +1,22 @@
 @extends('client.layouts.dashboard')
-
+@section('title')
+    Inicio
+@endsection
 @section('content')
     <div class="flex space-x-2 space-y-2">
-        <div class="w-1/3">
+        <div class="w-1/3 animated fadeIn">
             <div class="shadow-lg rounded-lg overflow-hidden">
                 <div class="py-3 px-5 bg-gray-50">Line chart</div>
                 <canvas class="p-10" id="chartLine"></canvas>
             </div>
         </div>
-        <div class="w-1/3">
+        <div class="w-1/3 animated fadeIn delay-1s">
             <div class="shadow-lg rounded-lg overflow-hidden">
                 <div class="py-3 px-5 bg-gray-50">Line chart</div>
                 <canvas class="p-10" id="chartLine2"></canvas>
             </div>
         </div>
-        <div class="w-1/3">
+        <div class="w-1/3 animated fadeIn delay-2s">
             <div class="shadow-lg rounded-lg overflow-hidden">
                 <div class="py-3 px-5 bg-gray-50">Line chart</div>
                 <canvas class="p-10" id="chartLine3"></canvas>

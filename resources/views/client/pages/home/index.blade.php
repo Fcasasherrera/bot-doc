@@ -1,5 +1,7 @@
 @extends('client.layouts.master')
-
+@section('title')
+    Inicio
+@endsection
 @section('content')
     @include('client.components.hero')
 

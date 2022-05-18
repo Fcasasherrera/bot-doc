@@ -10,6 +10,7 @@
     <!-- Styles -->
     <link rel="icon" href="/images/fav.ico" type="image/x-icon">
     <link href="{{ asset('css/client/app.css') }}" rel="stylesheet">
+    <title>Bot-Doc | @yield('title')</title>
 </head>
 
 <body>

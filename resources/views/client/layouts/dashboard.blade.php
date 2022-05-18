@@ -10,6 +10,8 @@
     <!-- Styles -->
     <link rel="icon" href="/images/fav.ico" type="image/x-icon">
     <link href="{{ asset('css/client/app.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <title>Bot-Doc | @yield('title')</title>
 </head>
 
 <body>
@@ -28,6 +30,8 @@
     <script async src="{{ asset('js/app.js') }}"></script>
     <!-- Required chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+        integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
     @yield('scripts')
 </body>
 

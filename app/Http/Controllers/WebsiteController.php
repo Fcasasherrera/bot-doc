@@ -10,6 +10,7 @@ use App\Models\Sintoma;
 use App\Http\Controllers\Admin\SinEnfsController;
 use App\Models\Diagnostico;
 use App\Models\Enfermedad;
+use App\Models\SigEnf;
 use App\Models\SinEnf;
 use App\Models\User;
 use App\Models\Usuario;
@@ -83,6 +84,8 @@ class WebsiteController extends Controller
         ]);
         return response('MF200');
     }
+
+
     public function login(Request $request)
     {
         $user = User::where('email', $request->email)->orderBy('created_at', 'desc')->first();
@@ -94,6 +97,8 @@ class WebsiteController extends Controller
         }
         return response('MF200');
     }
+
+
     public function createCite(Request $request)
     {
         $user = User::where('email', $request->email)->orderBy('created_at', 'desc')->first();
@@ -102,31 +107,109 @@ class WebsiteController extends Controller
         }
         $histClin = HistorialClin::where('idUsuario', $user->id)->orderBy('created_at', 'desc')->first();
         $currentTime = Carbon::now();
-        $result1 = [];
-        $result2 = [];
-        $result3 = [];
-        $enfermedades1 = SinEnf::where('idSintoma', $request->sintoma1)->get();
-        foreach ($enfermedades1 as $key => $enfermedad1) {
-            $result1[$key] = $enfermedad1->enfermdad->nombre;
-        };
 
-        $enfermedades2 = SinEnf::where('idSintoma', $request->sintoma2)->get();
-        foreach ($enfermedades2 as $key => $enfermedad2) {
-            $result2[$key] = $enfermedad2->enfermdad->nombre;
+
+
+        $signosEnf = [];
+        if (isset($request->signos)) {
+            $signos = explode(":", $request->signos);
+            foreach ($signos as $key => $signoEnf) {
+                $signosEnf[$key] = SigEnf::where('idSigno', $signoEnf)->first();
+                $signosEnf[$key] = $signosEnf[$key]->enfermedad->nombre;
+            }
         }
 
-        $enfermedades3 = SinEnf::where('idSintoma', $request->sintoma3)->get();
-        foreach ($enfermedades3 as $key => $enfermedad3) {
-            $result3[$key] = $enfermedad3->enfermdad->nombre;
+        $pruebas_labs = [];
+        $pruebas_mortem = [];
+        $tratamientos = [];
+        $sintomas = explode(":", $request->sintomas);
+
+        foreach ($sintomas as $key => $sintomaEnf) {
+            $sintomasEnf[$key] = SinEnf::where('idSintoma', $sintomaEnf)->first();
+            $pruebas_labs[$key] = $sintomasEnf[$key]->enfermedad->pruebalab;
+            $pruebas_mortem[$key] = $sintomasEnf[$key]->enfermedad->pruebapostmortem;
+            $tratamientos[$key] = $sintomasEnf[$key]->enfermedad->tratamiento;
+            $result[$key] = $sintomasEnf[$key]->enfermedad->nombre;
         }
-        $result = array_merge($result1, $result2, $result3);
-        //final
-        $result = array_count_values($result);
+
+        $result = array_merge($result, $signosEnf);
+
+        $porcentajes = [];
+        $total = count($result);
+        $pruebasLabs = [];
+
+        if (isset($request->pruebas_lab)) {
+            $pruebasL = explode(":", $request->pruebas_lab);
+            foreach ($pruebasL as $key => $pruebaL) {
+                $pruebasLabs[$key] = Enfermedad::where('id', $pruebaL)->first();
+                $pruebasLabs[$key] = $pruebasLabs[$key]->nombre;
+            }
+            $pruebasLabs = implode($pruebasLabs);
+            $resulta2 =  $result;
+            $result = array_unique($result);
+            sort($result);
+
+            $eliminar = array_search($pruebasLabs, array_values($result));
+
+            unset($result[$eliminar]);
+            $conteo = array_count_values($resulta2);
+            $eliminar2 = array_search($pruebasLabs, array_values($resulta2));
+            // dd($eliminar2);
+
+            for ($i = 0; $i < $conteo[$pruebasLabs]; $i++) {
+                // dd($conteo[$pruebasLabs]);
+                unset($resulta2[$eliminar2 + $i]);
+            }
+
+            $conteo2 = array_count_values($resulta2);
+
+            $total = count($resulta2);
+            foreach ($conteo2 as $key => $cont) {
+                $porcentajes[$key] = ((float)$cont * 100) / $total;
+                $porcentajes[$key] = round($porcentajes[$key], 0);
+            }
+
+            $info = [];
+            $info['enfermedad'] = $porcentajes;
+            $info['tratamientos'] = array_unique($tratamientos);
+
+            $info['pruebas_labs'] = array_unique($pruebas_labs);
+            $info['pruebas_mortem'] = array_unique($pruebas_mortem);
+
+            sort($info['tratamientos']);
+            sort($info['pruebas_labs']);
+            sort($info['pruebas_mortem']);
+
+            unset($info['tratamientos'][$eliminar]);
+            unset($info['pruebas_labs'][$eliminar]);
+            unset($info['pruebas_mortem'][$eliminar]);
+        } else {
+            $conteo = array_count_values($result);
+            foreach ($conteo as $key => $cont) {
+                $porcentajes[$key] = ((float)$cont * 100) / $total;
+                $porcentajes[$key] = round($porcentajes[$key], 0);
+            }
+
+            $info = [];
+            $info['enfermedad'] = $porcentajes;
+            $info['tratamientos'] = array_unique($tratamientos);
+            $info['pruebas_labs'] = array_unique($pruebas_labs);
+            $info['pruebas_mortem'] = array_unique($pruebas_mortem);
+        }
+
+        dd($info);
+
+        //pruebas post mortem y laboratorio
+
+        //agregar parametros de pruebas postmortem, de laboratorio, 
+
+
         arsort($result);
         $most_frequent = key($result);
         $enfermedad = Enfermedad::where('nombre', $most_frequent)->orderBy('created_at', 'desc')->first();
         // $sintomas = "[" . $request->sintoma1 . "," . $request->sintoma2 . "," . $request->sintoma3 . "]";
         // $signos = "[" . $request->sintoma1 . "," . $request->signos2 . "," . $request->signos3 . "]";
+
         $cita = Cita::create([
             'idHistorial' => $histClin->id,
             'idSigno' => $request->sintoma1,

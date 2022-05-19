@@ -23,6 +23,14 @@
             </div>
         </div>
     </div>
+    <div class="welcome-quote">
+        <blockquote>
+            Happiness is not something readymade. It comes from your own actions.
+            <cite>
+                Dalai Lama
+            </cite>
+        </blockquote>
+    </div>
 
     <!-- This example requires Tailwind CSS v2.0+ -->
 

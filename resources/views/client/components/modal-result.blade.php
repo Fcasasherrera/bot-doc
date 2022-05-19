@@ -21,18 +21,15 @@
             </div>
             <!-- Modal body -->
             <div class="p-6 space-y-6">
-                Usted puede tener cualquiera de las siguientes enfermedaes se listaran con porcentajes de probabilidad.
-                <ul id="listResult">
-                    <li>
-                    </li>
+                Usted puede tener cualquiera de las siguientes enfermedades se listaran con porcentajes de probabilidad.
+                <ul class="list-disc p-8" id="listResult">
                 </ul>
-
             </div>
             <!-- Modal footer -->
             <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
                 <span>Puede revisar sus resultados en la seccion resultados con su numero de cita.</span>
                 <button type="button" onclick="resultModal()"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Agregar</button>
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Aceptar</button>
             </div>
         </div>
     </div>

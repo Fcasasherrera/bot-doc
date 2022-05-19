@@ -42,6 +42,16 @@
 
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="signos" class="block text-gray-700 text-sm font-bold mb-2">
+                            Pruebas
+                        </label>
+                        <span note class="text-sm text-gray-600"> Seleccione una prueba </span>
+                        <select class="js-example-basic-single w-full form-control" name="pruebas[]" multiple="multiple"
+                            id="pruebas">
+
+                        </select>
+                    </div>
 
                     <textarea class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         id="detalles" name="detalles" rows="3" placeholder="Detalles"></textarea>

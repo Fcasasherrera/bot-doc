@@ -28,16 +28,28 @@ class WebsiteController extends Controller
     {
         return view('client.pages.dashboard.index');
     }
-    public function consult()
+    public function consult(Request $request, $sintomas, $signos)
     {
+        $flag = false;
+        $query = Cita::select();
+        if (strpos($sintomas, 'todos') === false) {
+            $query->where('idSintoma', $sintomas);
+            $flag = true;
+        }
+        if (strpos($signos, 'todos') === false) {
+            $query->where('idSintoma', $signos);
+            $flag = true;
+        }
+        $citas = $query->paginate(10);
+        // $citas = Cita::paginate(10);
         $sintomas = Sintoma::all();
-        $citas = Cita::all();
-        return view('client.pages.dashboard.consult', compact('sintomas', 'citas'));
+        return view('client.pages.dashboard.consult', compact('sintomas', 'citas', 'flag'));
     }
     public function result()
     {
-        $resultados = Diagnostico::all();
-        return view('client.pages.dashboard.result', compact('resultados'));
+        return view('client.pages.dashboard.result', [
+            'resultados' => Diagnostico::paginate(10)
+        ]);
     }
     public function generateRandomString($length = 10)
     {
@@ -108,11 +120,11 @@ class WebsiteController extends Controller
         $histClin = HistorialClin::where('idUsuario', $user->id)->orderBy('created_at', 'desc')->first();
         $currentTime = Carbon::now();
 
-
-
         $signosEnf = [];
+        $signoPrincipal = 1;
         if (isset($request->signos)) {
             $signos = explode(":", $request->signos);
+            $signoPrincipal = $signos[0];
             foreach ($signos as $key => $signoEnf) {
                 $signosEnf[$key] = SigEnf::where('idSigno', $signoEnf)->first();
                 $signosEnf[$key] = $signosEnf[$key]->enfermedad->nombre;
@@ -122,8 +134,9 @@ class WebsiteController extends Controller
         $pruebas_labs = [];
         $pruebas_mortem = [];
         $tratamientos = [];
-        $sintomas = explode(":", $request->sintomas);
 
+        $sintomas = explode(":", $request->sintomas);
+        $sintomaPrincipal = $sintomas[0];
         foreach ($sintomas as $key => $sintomaEnf) {
             $sintomasEnf[$key] = SinEnf::where('idSintoma', $sintomaEnf)->first();
             $pruebas_labs[$key] = $sintomasEnf[$key]->enfermedad->pruebalab;
@@ -197,23 +210,22 @@ class WebsiteController extends Controller
             $info['pruebas_mortem'] = array_unique($pruebas_mortem);
         }
 
-        dd($info);
+        // dd($info);
 
         //pruebas post mortem y laboratorio
 
         //agregar parametros de pruebas postmortem, de laboratorio, 
 
 
-        arsort($result);
-        $most_frequent = key($result);
+        arsort($info["enfermedad"]);
+        $most_frequent = key($info["enfermedad"]);
         $enfermedad = Enfermedad::where('nombre', $most_frequent)->orderBy('created_at', 'desc')->first();
-        // $sintomas = "[" . $request->sintoma1 . "," . $request->sintoma2 . "," . $request->sintoma3 . "]";
-        // $signos = "[" . $request->sintoma1 . "," . $request->signos2 . "," . $request->signos3 . "]";
 
+        // return $sintomaPrincipal;
         $cita = Cita::create([
             'idHistorial' => $histClin->id,
-            'idSigno' => $request->sintoma1,
-            'idSintoma' => $request->sintoma1,
+            'idSigno' => $signoPrincipal,
+            'idSintoma' => $sintomaPrincipal,
             'fechaCita' => $currentTime,
             'detalles' => $request->detalles,
         ]);
@@ -227,7 +239,7 @@ class WebsiteController extends Controller
         ]);
         return response([
             'status' => true,
-            'data' => $result
+            $info
         ]);
     }
     public function sintomas()
@@ -235,6 +247,13 @@ class WebsiteController extends Controller
         return response([
             'status' => true,
             'data' => Sintoma::all()
+        ]);
+    }
+    public function enfermedades()
+    {
+        return response([
+            'status' => true,
+            'data' => Enfermedad::all()
         ]);
     }
     public function signos()

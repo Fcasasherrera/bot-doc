@@ -22,8 +22,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware('api')->get('/sintomas', [WebsiteController::class, 'sintomas']);
 Route::middleware('api')->get('/signos', [WebsiteController::class, 'signos']);
 Route::middleware('api')->get('/citas', [WebsiteController::class, 'citas']);
+Route::middleware('api')->get('/enfermedades', [WebsiteController::class, 'enfermedades']);
 
 Route::middleware('api')->post('/register', [WebsiteController::class, 'register']);
 Route::middleware('api')->post('/login', [WebsiteController::class, 'login']);
 Route::middleware('api')->post('/citas', [WebsiteController::class, 'createCite']);
+
 // Route::post('/consultDisease', 'App\Http\Controllers\WebsiteController@consultDisease');

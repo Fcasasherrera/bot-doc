@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'App\Http\Controllers\WebsiteController@index');
 Route::get('/dashboard', 'App\Http\Controllers\WebsiteController@dashboard');
-Route::get('/dashboard/medical-consult', 'App\Http\Controllers\WebsiteController@consult');
+Route::get('/dashboard/medical-consult/{sintomas}/{signos}', 'App\Http\Controllers\WebsiteController@consult');
 Route::get('/dashboard/medical-result', 'App\Http\Controllers\WebsiteController@result');
 
 // Route::post('/consultDisease', 'App\Http\Controllers\WebsiteController@consultDisease');

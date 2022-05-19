@@ -167,12 +167,16 @@ class WebsiteController extends Controller
             unset($result[$eliminar]);
             $conteo = array_count_values($resulta2);
             $eliminar2 = array_search($pruebasLabs, array_values($resulta2));
-            // dd($eliminar2);
 
-            for ($i = 0; $i < $conteo[$pruebasLabs]; $i++) {
-                // dd($conteo[$pruebasLabs]);
-                unset($resulta2[$eliminar2 + $i]);
+
+            if (isset($conteo[$pruebasLabs])) {
+                for ($i = 0; $i < $conteo[$pruebasLabs]; $i++) {
+                    // dd($conteo[$pruebasLabs]);
+                    unset($resulta2[$eliminar2 + $i]);
+                }
             }
+
+
 
             $conteo2 = array_count_values($resulta2);
 

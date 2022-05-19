@@ -50,17 +50,17 @@
                                             {{ $resultado->enfermedad->nombre }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            <ul class="list-disc">
-                                                <li>{{ $resultado->pruebasLab->nombre }}</li>
+                                            <ul class="list-disc capitalize">
+                                                <li>{{ $resultado->enfermedad->pruebalab }}</li>
                                             </ul>
                                         </td>
                                         <td class="px-6 py-4">
-                                            <ul class="list-disc">
-                                                <li>{{ $resultado->pruebasMor->nombre }}</li>
+                                            <ul class="list-disc capitalize">
+                                                <li>{{ $resultado->enfermedad->pruebapostmortem }}</li>
                                             </ul>
                                         </td>
-                                        <td class="px-6 py-4">
-                                            <li>{{ $resultado->tratamiento->nombre }}</li>
+                                        <td class="px-6 py-4 capitalize">
+                                            <li>{{ $resultado->enfermedad->tratamiento }}</li>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -135,10 +135,17 @@
                 email,
                 token,
             }
-            console.log(data);
+            //console.log(data);
             axios.post('/api/citas', data)
                 .then(function(response) {
-                    if (response.data.status) {
+                    console.log(response)
+                    if (response.status) {
+                        consultModal();
+                        let listResult = document.getElementById("listResult");
+                        var option = document.createElement("span");
+                        option.text = "asdfasdf";
+                        listResult.add(option);
+                        resultModal();
 
                     }
                 })
